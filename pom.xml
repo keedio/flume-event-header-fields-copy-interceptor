@@ -6,7 +6,7 @@
 
   <groupId>org.keedio.flume.interceptor.enrichment</groupId>
   <artifactId>flume-event-header-fields-copy-interceptor</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
 
   <name>flume-header-fields-copy-interceptor</name>
   <description>Copies flume event header fields to output JSON extraData field.</description>
@@ -17,6 +17,23 @@
       <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
     </license>
   </licenses>
+
+  <url>https://github.com/keedio/flume-event-header-fields-copy-interceptor</url>
+
+  <developers>
+    <developer>
+      <name>Luca Rosellini</name>
+      <email>lrosellini@keedio.org</email>
+      <organization>Keedio</organization>
+      <organizationUrl>http://www.keedio.com</organizationUrl>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:git@github.com:keedio/flume-event-header-fields-copy-interceptor.git</connection>
+    <developerConnection>scm:git:git@github.com:keedio/flume-event-header-fields-copy-interceptor.git</developerConnection>
+    <url>https://github.com/keedio/flume-event-header-fields-copy-interceptor</url>
+  </scm>
 
   <properties>
     <!-- Generic properties -->
