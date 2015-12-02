@@ -8,12 +8,12 @@ To configure your agent to use this interceptor, first configure all the propert
 
 	# interceptor
 	a1.sources.r1.interceptors = i1
-	
-	## other properties ...
+	a1.sources.r1.interceptors.i1.type = org.keedio.flume.interceptor.enrichment.FieldCopyInterceptor.Builder
 
-	# Fields to copy from the Flume event header to the extraData field
-	a1.sources.r1.interceptors.i1.header.fields.to.copy.1 = header1
-	a1.sources.r1.interceptors.i1.header.fields.to.copy.2 = header2
-	
-This will produce an event whose body contains an enriched message in which the extraData field contains the values for headers `header1` and `header2` coming in the input flume event. 
-If the specified headers do not exist, the extraData field won't be modified.
+	## other properties
+	...
+
+	# Full path to the properties file that contains the extra data to enrich the event with
+	a1.sources.r1.interceptors.i1.properties.filename = /path/to/filename.properties
+	# The format of incoming events ( DEFAULT | enriched )
+	a1.sources.r1.interceptors.i1.event.type = DEFAULT
