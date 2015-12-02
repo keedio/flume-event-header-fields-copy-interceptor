@@ -1,0 +1,7 @@
+.DS_Store
+/target/
+.idea/
+*.ser
+*.iml
+.springBeans
+dependency-reduced-pom.xml
