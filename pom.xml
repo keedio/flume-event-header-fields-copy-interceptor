@@ -27,6 +27,12 @@
       <organization>Keedio</organization>
       <organizationUrl>http://www.keedio.com</organizationUrl>
     </developer>
+    <developer>
+      <name>Daniel Sánchez</name>
+      <email>dsanchez@keedio.org</email>
+      <organization>Keedio</organization>
+      <organizationUrl>http://www.keedio.com</organizationUrl>
+    </developer>
   </developers>
 
   <scm>
@@ -57,12 +63,12 @@
     <dependency>
       <groupId>org.keedio.flume.interceptor.enrichment</groupId>
       <artifactId>flume-enrichment-interceptor</artifactId>
-      <version>0.0.10</version>
+      <version>0.1.2</version>
     </dependency>
     <dependency>
       <groupId>org.keedio.flume.interceptor.enrichment</groupId>
       <artifactId>flume-enrichment-interceptor</artifactId>
-      <version>0.0.9-SNAPSHOT</version>
+      <version>0.1.2</version>
       <type>test-jar</type>
       <scope>test</scope>
     </dependency>
