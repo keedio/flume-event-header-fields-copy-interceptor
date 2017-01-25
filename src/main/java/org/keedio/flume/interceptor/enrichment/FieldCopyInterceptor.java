@@ -17,7 +17,7 @@ import java.util.*;
  */
 public class FieldCopyInterceptor extends EnrichmentInterceptor {
 
-    private Collection<String> fieldsToCopy;
+    private Map<String, String> fieldsToCopy;
 
     /**
      * Default constructor.
@@ -28,7 +28,7 @@ public class FieldCopyInterceptor extends EnrichmentInterceptor {
         super(context);
 
         Map<String, String> ftoCopy = this.context.getSubProperties("header.fields.to.copy.");
-        fieldsToCopy = ftoCopy != null && ftoCopy.values().size() > 0 ? ftoCopy.values() : null;
+        fieldsToCopy = ftoCopy != null && ftoCopy.values().size() > 0 ? ftoCopy : null;
     }
 
     @Override
@@ -39,11 +39,9 @@ public class FieldCopyInterceptor extends EnrichmentInterceptor {
 
         Map<String, String> data = enrichedBody.getExtraData();
 
-        for (String fieldName : fieldsToCopy) {
-
-            if (event.getHeaders().containsKey(fieldName))
-                data.put(fieldName, event.getHeaders().get(fieldName));
-
+        for (Map.Entry<String, String> entry : fieldsToCopy.entrySet()) {
+            if (event.getHeaders().containsKey(entry.getKey()))
+                data.put(entry.getValue(), event.getHeaders().get(entry.getKey()));
         }
 
     }
