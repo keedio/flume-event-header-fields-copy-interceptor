@@ -18,6 +18,7 @@ import java.util.*;
 public class FieldCopyInterceptor extends EnrichmentInterceptor {
 
     private Map<String, String> fieldsToCopy;
+    private boolean reverseMapping;
 
     /**
      * Default constructor.
@@ -29,6 +30,8 @@ public class FieldCopyInterceptor extends EnrichmentInterceptor {
 
         Map<String, String> ftoCopy = this.context.getSubProperties("header.fields.to.copy.");
         fieldsToCopy = ftoCopy != null && ftoCopy.values().size() > 0 ? ftoCopy : null;
+
+        this.reverseMapping = this.context.getBoolean("reverse.copy", false);
     }
 
     @Override
@@ -38,10 +41,20 @@ public class FieldCopyInterceptor extends EnrichmentInterceptor {
         }
 
         Map<String, String> data = enrichedBody.getExtraData();
+        Map<String, String> headers = event.getHeaders();
 
-        for (Map.Entry<String, String> entry : fieldsToCopy.entrySet()) {
-            if (event.getHeaders().containsKey(entry.getKey()))
-                data.put(entry.getValue(), event.getHeaders().get(entry.getKey()));
+        if (!reverseMapping) {
+            // Default strategy
+            for (Map.Entry<String, String> entry : fieldsToCopy.entrySet()) {
+                if (headers.containsKey(entry.getKey()))
+                    data.put(entry.getValue(), headers.get(entry.getKey()));
+            }
+        } else {
+            // Reverse strategy
+            for (Map.Entry<String, String> entry : fieldsToCopy.entrySet()) {
+                if (data.containsKey(entry.getKey()))
+                    headers.put(entry.getValue(), data.get(entry.getKey()));
+            }
         }
 
     }
